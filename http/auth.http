@@ -1,0 +1,32 @@
+POST http://localhost:8080/api/auth/registration
+Content-Type: application/json
+
+{
+  "login": "123",
+  "password": "123",
+  "name": "123"
+}
+
+###
+
+POST http://localhost:8080/api/auth/change_password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTYxMjczNDQwMH0.N6Vx5zJG59A-7p2lTC39HT2HmKRwRxg2FmiHyz-iMWM
+
+{
+  "password": "12345"
+}
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "login": "123",
+  "password": "12345"
+}
+
+###
+
+

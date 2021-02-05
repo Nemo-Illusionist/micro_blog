@@ -1,0 +1,8 @@
+{
+  "connection_string": "host=localhost user=postgres password=postgres dbname=micro_blog port=5432",
+  "secret_key": "9da3d8c6-8d7b-4869-8867-b77eef0a6058",
+  "address": ":8080",
+  "page_size": 20,
+  "page_size_max": 100,
+  "token_exp_hour": 72
+}
