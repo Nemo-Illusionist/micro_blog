@@ -8,7 +8,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/article/add
+POST http://localhost:8080/api/article/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
 
@@ -16,6 +16,81 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc
   "title": "test article",
   "short_body": "short test article body",
   "body": "full test article body"
+}
+
+###
+
+PUT http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "title": "test article update",
+  "short_body": "short test article body update",
+  "body": "full test article body update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "title": "test article update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "short_body": "short test article body update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "body": "full test article body update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "title": "test article update",
+  "short_body": "short test article body update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "short_body": "short test article body update",
+  "body": "full test article body update"
+}
+
+###
+
+PATCH http://localhost:8080/api/article/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjEyNzY3NjE4fQ.nXgEqfN213sqNsqQMU4jI38yZToeS6JpdpXzkI3O96w
+
+{
+  "title": "test article update",
+  "body": "full test article body update"
 }
 
 ###

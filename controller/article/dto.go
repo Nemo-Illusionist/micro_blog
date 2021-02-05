@@ -29,6 +29,12 @@ type Request struct {
 	Body      string `json:"body"`
 }
 
+type PatchRequest struct {
+	Title     *string `json:"title"`
+	ShortBody *string `json:"short_body"`
+	Body      *string `json:"body"`
+}
+
 type Response struct {
 	ID uint64 `json:"id"`
 }

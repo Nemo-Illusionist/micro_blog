@@ -11,14 +11,14 @@ import (
 	"strconv"
 )
 
-func Update(c echo.Context) error {
+func HalfUpdate(c echo.Context) error {
 	_, isAdmin := auth.GetUserInfo(c)
 	if !isAdmin {
 		return c.JSON(errors.ForbiddenBoom())
 	}
 
 	body := c.Request().Body
-	dto := Request{}
+	dto := PatchRequest{}
 	err := json.NewDecoder(body).Decode(&dto)
 	if err != nil {
 		return c.JSON(errors.BadRequestBoom(err))
@@ -30,7 +30,19 @@ func Update(c echo.Context) error {
 	}
 
 	ac := c.(*core.AppContext)
-	article := &models.Article{Title: dto.Title, ShortBody: dto.ShortBody, Body: dto.Body}
+	article := &models.Article{}
+	if dto.Title != nil {
+		article.Title = *dto.Title
+	}
+
+	if dto.Body != nil {
+		article.Body = *dto.Body
+	}
+
+	if dto.ShortBody != nil {
+		article.ShortBody = *dto.ShortBody
+	}
+
 	tx := ac.Db.Where(&models.Article{ID: articleID}).Updates(article)
 	if tx.Error != nil {
 		return c.JSON(errors.BadRequestBoom(err))
