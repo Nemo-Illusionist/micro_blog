@@ -6,12 +6,6 @@ import (
 	"strconv"
 )
 
-type PageResponse struct {
-	Page     int         `json:"page"`
-	PageSize int         `json:"page_size"`
-	Data     interface{} `json:"data"`
-}
-
 func NewPageResponse(data interface{}, page, pageSize int) PageResponse {
 	pageResponse := PageResponse{
 		Page:     page,

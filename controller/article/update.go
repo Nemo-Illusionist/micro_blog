@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/labstack/echo"
 	"micro_blog/auth"
+	"micro_blog/controller/base"
 	"micro_blog/core"
 	"micro_blog/core/errors"
 	"micro_blog/dal/models"
@@ -36,5 +37,5 @@ func Update(c echo.Context) error {
 		return c.JSON(errors.BadRequestBoom(err))
 	}
 
-	return c.JSON(http.StatusCreated, Response{ID: articleID})
+	return c.JSON(http.StatusCreated, base.IdResponse{ID: articleID})
 }

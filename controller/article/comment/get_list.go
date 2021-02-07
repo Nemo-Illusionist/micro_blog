@@ -1,4 +1,4 @@
-package article
+package comment
 
 import (
 	"github.com/labstack/echo"
@@ -7,34 +7,39 @@ import (
 	"micro_blog/core/errors"
 	"micro_blog/dal/models"
 	"net/http"
+	"strconv"
 )
 
 func GetList(c echo.Context) error {
 	ac := c.(*core.AppContext)
 
+	articleID, err := strconv.ParseUint(c.Param("article_id"), 10, 0)
+	if err != nil {
+		return c.JSON(errors.BadRequestBoom(err))
+	}
+
 	page, offset := base.GetPaging(c, ac)
 
-	var articles []models.Article
-	response := ac.Db.Model(&models.Article{}).Joins("User").
-		Where(&models.Article{DeletedAt: nil}).
+	var comments []models.Comment
+	response := ac.Db.Model(&models.Comment{}).Joins("User").
+		Where(&models.Comment{ArticleID: articleID}).
 		Order("created_at desc").
 		Offset(offset).Limit(page).
-		Find(&articles)
+		Find(&comments)
 	if response.Error != nil {
 		return c.JSON(errors.InternalServerErrorBoom(response.Error))
 	}
 
-	list := make([]DtoElement, len(articles))
+	list := make([]DtoElement, len(comments))
 
-	for index, article := range articles {
+	for index, comment := range comments {
 		list[index] = DtoElement{
-			ID:        article.ID,
-			Title:     article.Title,
-			ShortBody: article.ShortBody,
-			CreatedAt: article.CreatedAt,
+			ID:        comment.ID,
+			CommentID: comment.CommentID,
+			CreatedAt: comment.CreatedAt,
 			User: base.User{
-				ID:   article.ID,
-				Name: article.User.Name,
+				ID:   comment.ID,
+				Name: comment.User.Name,
 			},
 		}
 	}

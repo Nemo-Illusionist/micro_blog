@@ -24,7 +24,7 @@ func (u M202101252200Init) Up(db *gorm.DB) error {
 		return err
 	}
 
-	err = db.AutoMigrate(&models.User{}, &models.Article{})
+	err = db.AutoMigrate(&models.User{}, &models.Article{}, &models.Comment{})
 	if err != nil {
 		return err
 	}
@@ -46,6 +46,11 @@ func (u M202101252200Init) Down(db *gorm.DB) error {
 	}
 
 	err = db.Migrator().DropTable(&models.User{})
+	if err != nil {
+		return err
+	}
+
+	err = db.Migrator().DropTable(&models.Comment{})
 	if err != nil {
 		return err
 	}

@@ -2,6 +2,7 @@ package article
 
 import (
 	"github.com/labstack/echo"
+	"micro_blog/controller/base"
 	"micro_blog/core"
 	"micro_blog/core/errors"
 	"micro_blog/dal/models"
@@ -26,11 +27,11 @@ func GetById(c echo.Context) error {
 	}
 
 	var vm = Dto{
-		ID:    article.ID,
-		Title: article.Title,
-		Body:  article.Body,
+		ID:        article.ID,
+		Title:     article.Title,
+		Body:      article.Body,
 		CreatedAt: article.CreatedAt,
-		User: User{
+		User: base.User{
 			ID:   article.UserID,
 			Name: article.User.Name,
 		},

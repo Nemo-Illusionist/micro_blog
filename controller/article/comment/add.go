@@ -1,4 +1,4 @@
-package article
+package comment
 
 import (
 	"encoding/json"
@@ -9,33 +9,35 @@ import (
 	"micro_blog/core/errors"
 	"micro_blog/dal/models"
 	"net/http"
+	"strconv"
 )
 
 func Add(c echo.Context) error {
-	userId, isAdmin := auth.GetUserInfo(c)
-	if !isAdmin {
-		return c.JSON(errors.ForbiddenBoom())
+	userId, _ := auth.GetUserInfo(c)
+	articleId, err := strconv.ParseUint(c.Param("article_id"), 10, 0)
+	if err != nil {
+		return c.JSON(errors.BadRequestBoom(err))
 	}
 
 	body := c.Request().Body
 	dto := Request{}
-	err := json.NewDecoder(body).Decode(&dto)
+	err = json.NewDecoder(body).Decode(&dto)
 	if err != nil {
 		return c.JSON(errors.BadRequestBoom(err))
 	}
 
 	ac := c.(*core.AppContext)
-	article := &models.Article{
+	comment := &models.Comment{
 		UserID:    userId,
-		Title:     dto.Title,
-		ShortBody: dto.ShortBody,
+		ArticleID: articleId,
 		Body:      dto.Body,
+		CommentID: dto.CommentID,
 	}
 
-	tx := ac.Db.Create(&article)
+	tx := ac.Db.Create(&comment)
 	if tx.Error != nil {
 		return c.JSON(errors.BadRequestBoom(err))
 	}
 
-	return c.JSON(http.StatusCreated, base.IdResponse{ID: article.ID})
+	return c.JSON(http.StatusCreated, base.IdResponse{ID: comment.ID})
 }
